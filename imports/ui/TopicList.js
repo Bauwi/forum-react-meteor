@@ -3,15 +3,14 @@ import { createContainer } from 'meteor/react-meteor-data'
 import {Meteor} from 'meteor/meteor'
 import { Session } from 'meteor/session'
 import propTypes from 'prop-types'
+import FlipMove from 'react-flip-move'
 
 import {Topics} from '../api/topics'
 import TopicListItem from './TopicListItem'
+import AddTopic from './AddTopic'
+import PinTopicsList from './PinTopicsList'
 
 export class TopicList extends Component {
-  handleNewTopic(e) {
-    e.preventDefault()
-    Meteor.call('topics.insert', 'hola', 'chico')
-  }
 
   renderTopics () {
     if(this.props.topics.length !== 0){
@@ -25,10 +24,13 @@ export class TopicList extends Component {
 
   render(){
     return(
-      <div>
-        <button onClick={this.handleNewTopic.bind(this)}>New Topic</button>
-        {this.renderTopics()}
-      </div>
+        <div>
+          <AddTopic />
+          <PinTopicsList />
+          <FlipMove duration={750} easing="ease-out">
+            {this.renderTopics()}
+          </FlipMove>
+        </div>
     )
   }
 }
@@ -44,7 +46,7 @@ export default createContainer(() => {
   return {
     topics: Topics.find({}, {
       sort: {
-        updatedAt: -1
+        lastUpdate: -1
       }
     }).fetch().map(topic => {
       return {

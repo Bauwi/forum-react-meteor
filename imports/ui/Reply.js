@@ -3,20 +3,15 @@ import { Session } from 'meteor/session'
 import { Meteor } from 'meteor/meteor'
 import { createContainer } from 'react-meteor-data'
 
-import {Messages} from '../api/messages'
+import Editor from './Editor'
 
-export class Reply extends Component {
+
+export default class Reply extends Component {
   constructor(props) {
     super(props)
     this.state = {
       message: ''
     }
-  }
-
-  handleReply(e) {
-    e.preventDefault()
-    const topicId = Session.get('selectedTopicId')
-    Meteor.call('messages.insert', topicId, this.state.message)
   }
 
   onChange(e) {
@@ -25,30 +20,18 @@ export class Reply extends Component {
 
   render() {
     return(
-      <div>
-        <p>{this.state.message}</p>
-        <input
-          value={this.state.message}
-          onChange={this.onChange.bind(this)}/>
-        <button onClick={this.handleReply.bind(this)}>Reply</button>
+      <div className="reply">
+        {/* <div>
+          <input
+            className="reply__ipt"
+            type="text"
+            value={this.state.message}
+            onChange={this.onChange.bind(this)}/>
+        </div> */}
+        <div className="reply__left--ipt">
+          <Editor />
+        </div>
       </div>
     )
   }
 }
-
-export default createContainer(() => {
-  const selectedTopicId = Session.get('selectedTopicId')
-  Meteor.subscribe('messages')
-  return {
-    messages: Messages.find({}, {
-      sort: {
-        updatedAt: 1
-      }
-    }).fetch().map(note => {
-      return {
-        ...note,
-        selected: (note._id === selectedTopicId)
-      }
-    })
-  }
-}, Reply)

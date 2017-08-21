@@ -1,4 +1,12 @@
+@font-face {
+    font-family: Butler;
+    src: url(../fonts/Butler_Webfont/butler_extrabold-webfont.woff2);
+}
+
 * {
+  font-family: Butler;
+  font-size: $base-font-size;
+  background: transparent;
   margin: 0;
   padding: 0;
 }
@@ -8,7 +16,7 @@ html {
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Butler, Arial, sans-serif;
   font-size: $base-font-size;
 }
 
@@ -23,7 +31,7 @@ h2 {
 }
 
 p {
-  margin-bottom: $space;
+  margin-bottom: 0;
 }
 
 a {

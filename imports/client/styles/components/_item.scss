@@ -1,17 +1,38 @@
+.item-container {
+
+}
 .item {
-  background: $item-bg;
-  border: 1px solid $item-border;
-  margin-bottom: $space;
-  padding: $space;
+  color: $item-text-color-subtitle;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem 1rem;
+  &:hover{
+    background-color: $dark-grey;
+    color: black;
+  }
 }
 
-.item__message {
-  color: $item-text-color;
+.item__subtitle--username {
+font-size: $small-font-size;
 }
 
-.item__status-message {
-  color: $item-text-color;
-  font-style: italic;
-  text-align: center;
+.item__title {
+
+  color: $item-text-color-title;
+
+  font-size: $medium-font-size;
   margin: 0;
+}
+
+.item__subtitle {
+
+  display: flex;
+
+  justify-content: space-between;
+
+}
+
+.item__subtitle--lastup {
+font-size: $small-font-size;
 }

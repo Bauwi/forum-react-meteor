@@ -1,8 +1,16 @@
 @import './variables';
+@import './mixins/media-query-mixins';
 @import './base';
+@import './components/app';
 @import './components/boxed-view';
 @import './components/button';
 @import './components/header';
 @import './components/page-content';
+@import './components/footer';
 @import './components/checkbox';
 @import './components/item';
+@import './components/post';
+@import './components/actions';
+@import './components/cobaye';
+// @import '{}/node-modules/antd/dist/antd';
+//forum/node_modules/antd/dist

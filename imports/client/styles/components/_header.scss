@@ -1,16 +1,33 @@
-.header {
+.header-container {
   background: $header-bg;
+  border-bottom: 3px solid  $light-grey;
   color: $header-color;
+  display: flex;
+  height: $header-height;
+  max-width: $site-max-width;
+  margin: auto;
+
 }
 
-.header__content {
-  display: flex;
+.header-container__left {
+overflow: hidden !important;
+padding-top: 1rem;
+}
+
+.header-container__right {
+  border-right: 3px solid $light-grey;
+  border-left: 3px solid $light-grey;
   justify-content: space-between;
-  max-width: $site-max-width;
-  margin: 0 auto;
-  padding: $space;
+  overflow: hidden !important;
+  padding: 1rem;
+
 }
 
 .header__title {
-  margin: 0;
+  font-size: $x-large-font-size;
+  margin-left: 1rem;
+}
+
+.header-container__right--btns > *{
+  margin-left: 1rem;
 }

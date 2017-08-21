@@ -3,46 +3,52 @@ import { Session } from 'meteor/session'
 import { createContainer } from 'meteor/react-meteor-data'
 import { Meteor } from 'meteor/meteor'
 import propTypes from 'prop-types'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import  { Messages }  from '../api/messages'
+
+import  { Topics }  from '../api/topics'
 import  MessageListItem  from './MessageListItem'
+import TopicFirstMessage from './TopicFirstMessage'
+
 
 export class MessageList extends Component {
-  renderMessages () {
-    const selectedTopicId = Session.get('selectedTopicId')
-    if(this.props.messages.length !== 0){
+  renderMessageList () {
+    if(this.props.topic.length !== 0){
       return (
-        this.props.messages.map(message => {
-          if(message.topicId === selectedTopicId){
-            return <MessageListItem key={message._id} message={message} />
-          }
+        this.props.topic[0].messages.map((message) => {
+            return (
+                <MessageListItem key={message.id} id={message.id} message={message} />
+            )
         })
       )
-    }
   }
+}
 
   render() {
     return (
-      <div>
-        <button onClick={() => console.log(this.props.messages)}>Access</button>
-        {this.renderMessages()}
+
+      <div className="message-list-wrapper">
+          <div>
+            <h3 className="post__message post__message--title">{!this.props.loading ? this.props.topic[0].title : ''}</h3>
+            <TopicFirstMessage />
+              {this.renderMessageList()}
+            </div>
       </div>
     )
   }
 }
 
-Messages.propTypes = {
-  messages: propTypes.array.isRequired
+Topics.propTypes = {
+  topics: propTypes.object.isRequired
 }
 
 export default createContainer (() => {
   const selectedTopicId = Session.get('selectedTopicId')
-  Meteor.subscribe('messages')
+  const subscription = Meteor.subscribe('topics')
+  const loading = !subscription.ready()
+  const topic = Topics.find({_id: selectedTopicId}, {}).fetch()
   return {
-    messages: Messages.find({}, {
-      sort: {
-        updatedAt: 1
-      }
-    }).fetch()
+    loading,
+    topic
   }
 }, MessageList)

@@ -1,0 +1,42 @@
+.reply {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.reply__left{
+    width: 25%;
+}
+.reply__left--ipt{
+  display: flex;
+  border: 1px solid black;
+  line-height: 3rem;
+  margin: $space;
+  min-height: $reply-ipt-height;
+  width: 70%;
+}
+
+
+.reply__right{
+    background-color: blue;
+  width: 25%;
+}
+
+.reply__right--btn {
+  background: rgba(255,255,255, .7);
+  border: 3px solid black;
+  border-radius: 10%;
+  color: black;
+  font-size: $x-large-font-size;
+  height: $reply-btn-height;
+  width: $reply-btn-width;
+
+}
+
+.is-fav-topic {
+  color: #ecb531;
+}
+.is-not-fav-topic {
+  color: $light-grey;
+}

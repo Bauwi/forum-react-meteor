@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { Component } from 'react'
 import propTypes from 'prop-types'
+import { Meteor } from 'meteor/meteor'
 import { Session } from 'meteor/session'
 import {createContainer} from 'meteor/react-meteor-data'
+import moment from 'moment'
 
-export const TopicListItem = (props) => {
-  return(
-    <div onClick={() => {props.Session.set('selectedTopicId', props.topic._id)}}>
-      {(props.topic._id===props.Session.get('selectedTopicId'))? 'selected' : undefined}
-      <h3>{props.topic._id}</h3>
-      <p>{props.topic.body}</p>
-    </div>
-  )
+export class TopicListItem extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { topic } = this.props
+    return(
+      <div onClick={() => {this.props.Session.set('selectedTopicId', this.props.topic._id)}}>
+        <div className="item">
+          <h3 className="item__title">{topic.title.split('').slice(0,40).join('').trim() + '...'}</h3>
+          <div className="item__subtitle">
+            <p className="item__subtitle--username">{topic.username}</p>
+            <p className="item__subtitle--lastup">last: {moment(topic.lastUpdate).format('HH:mm:ss')}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 TopicListItem.propTypes = {
@@ -19,5 +32,9 @@ TopicListItem.propTypes = {
 }
 
 export default createContainer(() => {
-  return { Session }
+  const selectedTopicId = Session.get('selectedTopicId')
+  Meteor.subscribe('Meteor.users.favTopics')
+  return {
+    Session
+  }
 }, TopicListItem)
