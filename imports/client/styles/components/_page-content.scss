@@ -4,25 +4,27 @@
   height: $page-content-height;
   max-width: $site-max-width;
   margin: 0 auto;
+  margin-top: -$paginationBar-height;
   @include desktop {
     padding: 0 ;
   }
 }
 
 .page-content__sidebar{
-  background-color: black;
+  background-color: rgba(0, 0, 0, .7);
   color: white;
   display: flex;
-  overflow-y: scroll;
+  overflow: hidden;
   transition: left .3s ease;
   width: 100vw ;
+  min-width: 100vw;
 
   position: fixed;
-  top: $header-height;
+  top: 0;
   left: -110vw;
   right: 0;
   bottom: 0;
-  // z-index: 1;
+  z-index: 6;
 
   &::-webkit-scrollbar-track
   {
@@ -52,36 +54,84 @@
   }
 
   @include desktop {
-    border-right: 3px solid black;
+
     position: static;
+
     width: 0;
-    transition: width 3s ease;
+    min-width: 0;
+    transition: width .3s ease;
     margin: 0;
 
   }
 }
 .page-content__sidebar__content {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  // overflow: auto;
+  // -webkit-justify-content: space-between;
+  // margin: $space auto auto auto ;
 
-  background-color: blue;
-  margin:auto;
+  opacity: 0;
+  margin-top: $header-height;
+  padding: 0 $space 0 $space;
+
+  @include desktop {
+    margin-top: 0;
+  }
 }
 
-.is-nav-open .page-content__sidebar {
+.page-content__sidebar__content--close {
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  left: 26rem;
+  top: -5rem;
+
+  z-index: 10 !important;
+  @include desktop{
+    display: none;
+  }
+}
+
+.page-content__sidebar__sidebar-nav > div{
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+.page-content__sidebar__list {
+  margin-bottom: $space;
+}
+.page-content__sidebar__content__mainList--title{
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+  margin-bottom: $space;
+}
+
+
+.is-nav-open .page-content__sidebar,  .is-nav-open .paginationBar__left--container{
   display: block;
   left: 0;
   min-width: $page-content-sidebar-width;
-  transition: min-width 5s ease;
+  width: $page-content-sidebar-width;
+  transition: all .3s ease-in-out;
 }
-
+.is-nav-open .page-content__sidebar__content, .is-nav-open .header__container__left > * {
+  opacity: 1;
+  transition: width .3s ease-in-out;
+}
 
 
 
 .page-content__main {
 
-  display: flex;
-  overflow-y: scroll;
+background: rgba(255, 255, 255, .3);
+  overflow-x: hidden;
   // overflow-x: hidden;
   width: 100%;
+
 
   &::-webkit-scrollbar-track
   {
@@ -113,16 +163,16 @@
 
   @include desktop {
     width: 100%;
+
   }
 }
 
-.page-content__main__post-list {
+.page-content__main__panel {
+  // background: rgba(255, 255, 255, .5);
   width: 100%;
+  height: $page-content-height;
 }
-.page-content__sidebar__pin-topic-list {
-  border-bottom: 1px solid #2A2A2A;
 
-}
 
 
 .topic-panel-container {

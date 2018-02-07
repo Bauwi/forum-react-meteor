@@ -1,70 +1,105 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js'
+import ReactQuill from 'react-quill'
+import { Session } from 'meteor/session'
+import { createContainer } from 'meteor/react-meteor-data'
 
-import './../../node_modules/draft-js/dist/Draft.css'
-
-class MyEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = this.onChange.bind(this)
-    this.handleKeyCommand = this.handleKeyCommand.bind(this)
+export class Editor extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { editorHtml: '', theme: 'snow' }
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
-    if (newState) {
-      this.onChange(newState)
-      return 'handled'
-    }
-    return 'not-handled'
-  }
-
-  onChange(editorState) {
-
-    this.setState({editorState})
-  }
-
-  _onBoldClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-  }
-  _onItalicClick() {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, ''))
+  handleChange (html) {
+  	this.setState({ editorHtml: html });
   }
 
   handleReply(e) {
     e.preventDefault()
     const topicId = Session.get('selectedTopicId')
-    const contentState = this.state.editorState.getCurrentContent()
-    const contentJSON = JSON.stringify(convertToRaw(contentState))
-    Meteor.call('topics.addMessage', topicId, contentJSON, Meteor.user().username)
+    Meteor.call('topics.addMessage', topicId, this.state.editorHtml, Meteor.user().username)
     Meteor.call('users.upMessageCount', Meteor.userId())
+    if(!this.props.isAlreadyParticipating) {
+      Meteor.call('users.updateParticipatingTopics', Meteor.userId(), this.props.Session.get('selectedTopicId'))
+    }
 
-
+    this.setState({
+      editorHtml: ''
+    })
+    Session.set('isReplyOpen', false)
   }
 
+  handleClose() {
+    Session.set('isReplyOpen', false)
+  }
+  // onBlur() {
+  //   Session.set('isReplyOpen', false)
+  // }
+
   render() {
+    // console.log(this.props.isAlreadyParticipating)
     return (
-      <div>
-          <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-          <div className="reply__ipt">
-            <Editor
-              editorState={this.state.editorState}
-              handleKeyCommand={this.handleKeyCommand}
-              onChange={this.onChange}
-            />
+      <div className="reply__content">
+          <div className="reply__content__input">
+            <ReactQuill
+              theme="snow"
+              onChange={this.handleChange}
+              value={this.state.editorHtml}
+              modules={Editor.modules}
+              formats={Editor.formats}
+              // onBlur={this.onBlur}
+              bounds={'.app'}
+              placeholder={this.props.placeholder}
+             />
           </div>
-          <div className="reply__right">
+          <div className="reply__content__buttons">
             <button
-              className="reply__right--btn"
+              onClick={this.handleClose}
+              className="reply__content__buttons--close"
+              >
+              X
+            </button>
+            <button
+              className="btn btn-1-black btn-1c-black"
               onClick={this.handleReply.bind(this)}>
-              <i className="fa fa-envelope"></i>
+              <i className="fa fa-reply"></i>
             </button>
           </div>
       </div>
     );
   }
 }
+<button>Send message</button>
+Editor.modules = {
+  toolbar: [
+    [{ 'header': '1'}, {'header': '2'}],
 
-export default MyEditor
+    ['bold', 'italic', 'underline', 'blockquote'],
+    [{'list': 'ordered'}],
+    ['link', 'video'],
+    ['clean']
+  ]
+}
+
+Editor.formats = [
+  'header',
+  'bold', 'italic', 'underline', 'blockquote',
+  'list',
+  'link', 'video',
+]
+
+Editor.propTypes = {
+  placeholder: React.PropTypes.string,
+}
+
+
+export default createContainer(() => {
+  const selectedTopicId = Session.get('selectedTopicId')
+  Meteor.subscribe('users')
+  const user = Meteor.users.find({_id: Meteor.userId()}).fetch()
+  return {
+    Session,
+    isAlreadyParticipating: user[0].participatingTopicId.includes(selectedTopicId)
+  }
+}, Editor)

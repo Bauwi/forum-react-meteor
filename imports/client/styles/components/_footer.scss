@@ -1,7 +1,36 @@
-.footer {
-  background-color: $dark-grey;
-  color: white;
+.footer{
+  // background-color: yellow;
   height: $footer-height;
-  margin: auto;
-  max-width: $site-max-width;
+}
+
+.footer__navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: rgba(255, 255, 255, .2);
+  height: $footer-height/2;
+  padding: $space/2 $space;
+
+  @include desktop {
+    padding: $space/2 $large-space;
+    justify-content: center;
+  }
+}
+
+.footer__navigation__list {
+  display: flex;
+  flex-direction: row;
+
+  list-style: none;
+}
+
+.footer__navigation__list > li {
+  cursor: pointer;
+  margin : 0 1rem;
+}
+
+.footer__navigation__list > li > * {
+  color: rgba(255, 255, 255, .5);
+  font-size: 3rem !important;
 }

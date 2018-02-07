@@ -1,5 +1,7 @@
 .message-list-wrapper{
-  padding: $large-space*2;
+  // border-left: 1px solid $light-grey;
+  // padding: $large-space*2;
+  min-height: $message-list-min-height;
 }
 
 .post {
@@ -10,18 +12,23 @@
   width: 100%;
 }
 
-.post:nth-child(odd) > p {
-  background-color: $ultra-light-grey;
+.post:nth-child(even){
+  background: rgba(200, 200, 200, .1);
 }
 
 .post__header {
+  color: rgba(255, 255, 255, .5);
   display: flex;
   font-size: $large-font-size;
-  margin-bottom: $space/2;
-  padding: $input-spacing $input-spacing 0 $input-spacing;
+  margin-left: $space;
+  // margin-right: $large-space*2;
+  padding: $large-space 0 0 $input-spacing;
   outline: none;
   width: $post-header-width;
 
+ @include desktop {
+   margin-left: $large-space*4;
+ }
 }
 .post__header--left {
   display: flex;
@@ -32,10 +39,9 @@
 }
 .post__header__avatar{
   border : 1px solid black;
-  border-radius: 10%;
   font-size: $small-font-size;
-  padding: $input-spacing ;
-  height: 3rem;
+  // padding: $input-spacing ;
+  width: 5rem;
 }
 
 .post__header__userdate {
@@ -46,7 +52,7 @@
 
 .post__header__username{
   font-size: $large-font-size;
-  font-weight: 900;
+  font-weight: 100;
   padding-bottom: 1rem;
 }
 .post__header__date--bottom {
@@ -54,37 +60,109 @@
 }
 
 .post__body {
-  background: rgba(255,255,255, .5);
+  // border: 2px solid rgba(255,255,255, .5);
+  color: white;
   display:flex;
-  box-shadow: 2px 2px 5px 0px #cfcfcf;
+  flex-direction: column;
   font-weight: 300;
-  margin: 2rem 1rem;
+  margin: 2rem $space 2rem 0;
   padding: 2rem;
   width: $post-body-width;
-//   resize: none;
-//   -webkit-overflow-scrolling: touch;
+  max-width: $post-body-width;
+  z-index: 1;
+
+
+  @include desktop{
+    margin: 2rem $large-space*4 2rem 0;
+  }
 }
 
+
+//content formatting
+.post__body > * {
+  width: 100%;
+}
+.post__body >  section > p > * {
+  width: 100%;
+}
+.post__body--header {
+  // border-bottom: 1px solid rgba(0, 0, 0, .1);
+  color: rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+.post__body--header > p {
+  padding: $space/2;
+}
+.post__body--section {
+  padding: $space 0;
+}
+.post__body--section > * {
+	// max-width: calc(#{$post-body-width} - #{$post-header-width}) !important;
+  // width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.post__body--section > * > * {
+  height: auto;
+}
+.post__body--footer {
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  color: rgba(255, 255, 255, .3);
+  font-style: italic;
+  padding-top: $space;
+}
 .post__message {
   margin: 0;
   padding: 2rem;
-
 }
 
 .post__message--first {
-  box-shadow: 1px 1px 20px 1px #cfcfcf;
-  min-height: 20rem;
+  // border-right: 4px solid white;
+  // border-left: 4px solid white;
+  border-bottom: 2px solid  white;
+  padding-top: $large-space;
+
 }
 
 .post__message--pins {
+  cursor: pointer;
   font-size: $large-font-size;
-  margin: $space 0;
+  margin:  0;
   padding: 0 0 0 $medium-space;
 }
 
-.post__message--title {
+.post__message__title {
   color: white;
-  background-color: black;
-  padding: 0 2rem;
+  background-color: rgba(0, 0, 0, .3);
+  // margin-bottom: 2rem;
+  padding: 5rem $space 1rem $space;
+  font-style: italic;
+
+  @include desktop {
+    padding: 5rem $large-space 1rem $large-space;
+  }
+}
+
+.post__message__title--title {
   font-size: $x-large-font-size;
+}
+
+.post__message__title__header {
+  color: rgba(255, 255, 255, .5);
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: $space 0 $space 0;
+  text-align: right;
+}
+
+.post__message__title__header--author{
+  font-size: $small-font-size;
+}
+
+.post__message__title__header--date {
+  font-size: $small-font-size;
+  margin-bottom: $space/2;
 }

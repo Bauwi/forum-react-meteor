@@ -2,15 +2,24 @@
 
 }
 .item {
+  border-left: 3px solid transparent;
   color: $item-text-color-subtitle;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 0.2rem 1rem;
+  transition: all .7s ease;
   &:hover{
-    background-color: $dark-grey;
+    background-color: rgba(0, 57, 115, .3);
     color: black;
+    transition: background-color 500ms linear;
   }
+}
+.item--selected {
+  // background-color: rgba(255, 255, 255, .4);
+  border-left: 3px solid rgba(255, 255, 255, .5);
+
+  transition: all .7s ease;
 }
 
 .item__subtitle--username {
@@ -26,7 +35,7 @@ font-size: $small-font-size;
 }
 
 .item__subtitle {
-
+  color: rgba(255,255, 255, 0.3);
   display: flex;
 
   justify-content: space-between;

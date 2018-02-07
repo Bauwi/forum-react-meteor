@@ -1,7 +1,7 @@
-@font-face {
-    font-family: Butler;
-    src: url(../fonts/Butler_Webfont/butler_extrabold-webfont.woff2);
-}
+// @font-face {
+//     font-family: Butler;
+//     src: url(../fonts/Butler_Webfont/butler_extrabold-webfont.woff2);
+// }
 
 * {
   font-family: Butler;
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: Butler, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: $base-font-size;
 }
 
@@ -36,11 +36,4 @@ p {
 
 a {
   color: black;
-}
-
-input[type=text], input[type=email], input[type=password] {
-  border: 1px solid $input-border;
-  font-size: $base-font-size;
-  margin-bottom: $space;
-  padding: $input-spacing;
 }

@@ -9,7 +9,7 @@ export class UserStats extends Component {
   render() {
 
     return (
-      <div>
+      <div className="message-list-wrapper">
         <p>UserStats</p>
         <p>Join: {Meteor.user() ? moment(Meteor.user().createdAt).format('MMM Do, Y') : ''}</p>
         <p>Messages: {Meteor.user() ? Meteor.user().messageCount : ''}</p>

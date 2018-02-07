@@ -11,17 +11,37 @@ if(Meteor.isServer){
   Meteor.publish('topics', function () {
     return Topics.find()
   })
+
 }
 
 Meteor.methods({
   'topics.insert' (title, body, username) {
-    return Topics.insert({
+    new SimpleSchema({
+      title: {
+        type: String,
+        min: 1,
+        max: 70
+      },
+      body: {
+        type: String,
+        min: 1
+      },
+      username: {
+        type: String,
+        min: 1
+      }
+    }).validate({
+      title, body, username
+    })
+
+   return Topics.insert({
       title,
       body,
       username,
       messages: [],
       authorId: this.userId,
-      lastUpdate: moment().valueOf()
+      lastUpdate: moment().valueOf(),
+      createdAt: moment().valueOf()
     })
   },
 
@@ -65,6 +85,8 @@ Meteor.methods({
       }
     })
 
-  }
+  },
+
+
 
 })

@@ -1,21 +1,23 @@
 // Colors
-$brand-primary: black;
+$brand-primary: #4169E1;
+$brand-secondary: #E18A07;
 $grey: #dddddd;
 $light-grey: #d3d1d1;
 $ultra-light-grey: #f6f6f6;
-$dark-grey: #52525B;
+$dark-grey: rgba(82, 82, 91, 0.8);
+$cyan: rgba(95, 162, 198, 1);
 
 // Spacing
 $space: 1.4rem;
 $medium-space: 2rem;
 $large-space: 2.8rem;
-$site-max-width: 100rem;
+$site-max-width: 110rem;
 
 // Font sizes
 $base-font-size: 1.4rem;
 $small-font-size: 1rem;
 $medium-font-size: 1.2rem;
-$large-font-size: 2rem;
+$large-font-size: 1.5rem;
 $x-large-font-size: 4rem;
 
 // Form inputs
@@ -36,11 +38,22 @@ $button-secondary-border-color: $grey;
 
 // Header
 $header-bg: white;
-$header-color: black;
-$header-height: 6rem;
+$header-color: white;
+$header-height: 10rem;
+
+// Pagination bar
+$paginationBar-height: 5rem;
+
+// Editor
+$editor-height: 5rem;
 
 // Footer
-$footer-height: 4rem;
+$footer-height: 10rem;
+
+// Reply
+$reply-height: 15rem;
+$reply-btn-height: 6rem;
+$reply-btn-width: 8rem;
 
 // item
 $item-bg: $light-grey;
@@ -51,14 +64,18 @@ $item-text-color-subtitle: $dark-grey;
 // Page Content
 $page-content-sidebar-width: 30rem;
 $page-content-main-width: calc(#{$site-max-width} - #{$page-content-sidebar-width}) ;
-$page-content-height: calc(100vh  - #{$header-height} - #{$footer-height} - #{$space}/4);
+$page-content-height: calc(100vh  - #{$header-height} );
 
-// Post content
+// Post
+$message-list-min-height: calc(#{$page-content-height} - #{$header-height} - #{$footer-height} - 7rem );
 $post-header-width: 10rem;
 $post-body-width: 90%;
 
+// Profile
+$profile-info-width: 20rem;
+$profile-option-width: calc(#{$site-max-width} - #{$profile-info-width});
 
-// Reply
-$reply-ipt-height: 10rem;
-$reply-btn-height: 6rem;
-$reply-btn-width: 8rem;
+
+// Messenger
+$messenger-userlist-height: 7rem;
+$messenger-message-list-height: calc(#{$page-content-height} - #{$messenger-userlist-height} - 8.6rem);

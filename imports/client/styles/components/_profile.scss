@@ -1,0 +1,206 @@
+.profile {
+  // background-color: lightgreen;
+  color: white;
+  height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 5px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    background-color: black;
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(0deg,
+                                              rgba(255, 255, 255, 0.5) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, 0.5) 50%,
+                          rgba(255, 255, 255, 0.5) 75%,
+                          transparent 75%,
+                          transparent)
+  }
+}
+.profile--empty{
+  display: block;
+  color: rgba(255, 255, 255, .5);
+  font-size: $small-font-size;
+  font-style: italic;
+  padding-top: 2rem;
+  margin: 0;
+  text-align: center;
+}
+
+.profile__top {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  // background-color: lightblue;
+  min-height: 30rem;
+}
+.profile__info {
+  background-color: rgba(0 ,0 ,0 ,.1);
+  display: flex;
+  justify-content: center;
+  margin-top: $space;
+  text-align: center;
+  width: 100%;
+
+  @include desktop {
+    min-width: $profile-info-width;
+    width: $profile-info-width;
+  }
+}
+
+.profile__info__username {
+  font-size: $x-large-font-size ;
+  font-weight: 900;
+  padding: 0;
+  margin: 0;
+}
+
+
+.profile__info__avatar {
+  width: 100%;
+}
+.profile__info__avatar--img{
+  border: 3px dashed grey;
+  width: 50%;
+}
+.profile__info__avatar--btn{
+  cursor: pointer;
+  padding: 0;
+  width: 2rem;
+
+  position: relative;
+  top: 2.4rem;
+  left: 13rem;
+
+  &:hover {
+    color: $brand-primary;
+  }
+}
+
+
+.profile__info__stats {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: $large-space*1.5;
+}
+
+.profile__info__stats > p{
+  font-size: $small-font-size;
+}
+
+
+.profile__info__signature--btn{
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 2rem;
+
+  position: relative;
+  left: 17rem;
+  top: 1rem;
+
+  &:hover {
+    color: $brand-primary;
+  }
+}
+
+.profile__social {
+  display:flex;
+  justify-content: flex-start;
+  // background-color: rgba(0 ,0 ,0 ,.2);
+  margin: $space 0 0 $space;
+  padding: $space;
+  width:100%;
+
+  @include desktop {
+    width:60%;
+    min-width: 30rem;
+  }
+}
+
+
+
+.profile__social--seeAll {
+  // background-color: blue;
+  cursor: pointer;
+  font-size: $small-font-size;
+  padding-right: $large-space*2;
+  text-align: right;
+  text-decoration: underline;
+}
+
+.profile__social__following {
+  display: flex;
+  flex-wrap: wrap;
+  // background-color: blue;
+  // justify-content: center;
+  flex-direction: row;
+  margin: $space;
+}
+
+
+
+.profile__social__following--item{
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, .3);
+  // border: 2px dashed green;
+  width: 4.5rem;
+  height: 6rem;
+  margin: $space/2;
+  padding: $space/4;
+}
+.profile__social__following--item--img-container{
+  display:flex;
+  border: 2px solid black;
+  background-color: white;
+  height: 4rem;
+}
+.profile__social__following--item--img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.profile__social__following--item--username{
+  font-size: 1rem;
+}
+
+.profile__social__following--more{
+  background: none;
+}
+.profile__social__following--more > p {
+  cursor: pointer;
+  font-size: $small-font-size;
+  text-decoration: underline;
+}
+
+.profile__topic-list {
+  // background-color: lightblue;
+  height: 50%;
+  margin: $large-space  0;
+}
+.profile__topic-list > nav > ul {
+  display: flex;
+  justify-content: center;
+}
+.profile__topic-list > nav > ul > li {
+  display: inline;
+  margin: 0 1rem;
+}

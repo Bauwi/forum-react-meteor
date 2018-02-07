@@ -4,13 +4,23 @@
 @import './components/app';
 @import './components/boxed-view';
 @import './components/button';
+@import './components/add-topic';
 @import './components/header';
+@import './components/blockquotes';
+@import './components/classic-list';
 @import './components/page-content';
+@import './components/home';
+@import './components/profile';
+@import './components/messenger';
 @import './components/footer';
 @import './components/checkbox';
 @import './components/item';
 @import './components/post';
-@import './components/actions';
-@import './components/cobaye';
+@import './components/search';
+@import './components/editor';
+@import '../../../../node_modules/react-quill/dist/quill.snow';
+@import '../../../../node_modules/slick-carousel/slick/slick.css';
+@import '../../../../node_modules/slick-carousel/slick/slick-theme.css';
+@import './components/btn-transition';
 // @import '{}/node-modules/antd/dist/antd';
 //forum/node_modules/antd/dist

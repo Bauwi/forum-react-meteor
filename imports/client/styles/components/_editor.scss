@@ -1,0 +1,121 @@
+/*TODO Change the 'reply's by an 'editor'*/
+
+.editor__toggler{
+
+  float: right;
+  margin-right: $large-space;
+  position: relative;
+
+  right: $page-content-main-width - 5rem;
+}
+.Editor__toggler__container {
+  width: 100%;
+}
+
+.super-container {
+  display:flex;
+  overflow: hidden;
+  width: inherit;
+
+  position: sticky;
+  bottom: 1rem ;
+
+  z-index: 3;
+}
+
+.reply {
+  background-color: rgba(255, 255, 255, .5);
+  box-shadow: 3px 3px 10px #999;
+  display: flex;
+  height: 0;
+  justify-content: space-between;
+  margin: auto;
+  overflow: hidden;
+  width: 80%;
+
+  position: relative;
+  bottom: 0;
+
+  z-index: 1;
+
+}
+
+.is-reply-open {
+
+  height: auto;
+  transition: height 0.3s ease;
+}
+
+
+.reply__content {
+
+  display: flex;
+  margin: 0 1rem;
+  padding: 1rem;
+  width: 100%;
+
+}
+
+.reply__content__input{
+  display: inline-block;
+  background-color: white;
+  box-shadow: inset 0 0 10px #999;
+  width: 90%;
+  min-height: $reply-height;
+}
+.reply__content__input > *{
+  padding: 1rem;
+}
+
+.reply__content--tools {
+  background-color: yellow;
+  margin: $space 0;
+  width: 90%;
+}
+
+.reply__content__buttons{
+  // background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-left: 1rem;
+  // float: right;
+  // position: relative;
+  // top: 60%;
+  // height: 20%;
+  // max-height: 15rem;
+  //
+  // width: 10%;
+}
+.reply__content__buttons > * {
+
+  height: 8rem;
+  width: 100%;
+}
+
+.reply__content__buttons--close {
+  height: 3rem;
+  width: 3rem;
+}
+
+// Quill modifiers
+//reset positionning
+.reply__content__input > div > div:nth-child(2) > div:nth-last-child(1) {
+  position:static !important;
+  top: 0rem !important;
+  left: 0 !important;
+  overflow-x: visible !important;
+  width: 100% !important;
+}
+
+// .reply__content__input > div > div:nth-child(2) > div:nth-last-child(1) > div {
+//   display:flex;
+//   background-color: red;
+// }
+
+//remove unnecessary borders
+.reply__content__input > div > div  {
+  border: none !important;
+}

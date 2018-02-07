@@ -1,6 +1,33 @@
-.app {
-  background-image: url("https://img15.hostingpics.net/pics/457154frogbg.png") ;
-  background-repeat:no-repeat;
-  background-size: 80%;
-  background-position:  top 35% left 90%;
+.app--home {
+// background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+//   background: #667db6;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+//
+//blue green
+// background: #007991;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #78ffd6, #007991);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #78ffd6, #007991); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+// //blue royal
+// background: #6190E8;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #A7BFE8, #6190E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background: #928DAB;  /* fallback for old browsers */
+background-image: linear-gradient(to right,  #3a7bd5, rgba(0, 57, 115, 0) );
+background-color: #005A6E;
+transition: background-color 1s ease;
+}
+
+.app--profile {
+  background-image: linear-gradient(to right, #3a7bd5, rgba(0, 57, 115, 0));
+  background-color: #007C96;
+  transition: background-color 1s ease;
+}
+
+.app--messenger {
+  background-image: linear-gradient(to right, #3a7bd5, rgba(0, 57, 115, 0));
+  background-color: #00d2ff;
+  transition: background-color 1s ease;
 }
